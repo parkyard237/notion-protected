@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>密碼保護頁</title>
+  <title>社區報表登入頁</title>
   <style>
     body {
       font-family: "Arial", sans-serif;
       text-align: center;
       padding: 2rem;
-      background-color: #f8f9fa;
+      background-color: #f4f4f4;
     }
     .container {
       max-width: 400px;
@@ -19,12 +19,6 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    iframe {
-      width: 100%;
-      height: 800px;
-      border: none;
-      margin-top: 2rem;
     }
     input[type="password"] {
       width: 100%;
@@ -38,6 +32,12 @@
       font-size: 1rem;
       cursor: pointer;
     }
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      margin-top: 2rem;
+    }
     .error {
       color: red;
       margin-top: 1rem;
@@ -47,28 +47,33 @@
 </head>
 <body>
   <div class="container" id="loginBox">
-    <h2>請輸入密碼以查看內容</h2>
+    <h2>請輸入密碼以查看報表</h2>
     <input type="password" id="password" placeholder="輸入密碼" />
     <button onclick="checkPassword()">確認</button>
     <div class="error" id="error">密碼錯誤，請再試一次。</div>
   </div>
 
   <div id="notionContent" style="display: none;">
-    <iframe src="https://pass.notion.com" allowfullscreen></iframe>
+    <iframe src="https://silken-submarine-d21.notion.site/22078b58599f806ab80ad56ba285f81a" allowfullscreen></iframe>
   </div>
 
-  <script>
-    const correctPassword = "pass";
+  
+<script>
+  function decode(str) {
+    return atob(str);
+  }
 
-    function checkPassword() {
-      const entered = document.getElementById("password").value;
-      if (entered === correctPassword) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("notionContent").style.display = "block";
-      } else {
-        document.getElementById("error").style.display = "block";
-      }
+  function checkPassword() {
+    const entered = document.getElementById("password").value;
+    const correct = decode("MjM3"); // base64 for "237"
+    if (entered === correct) {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("notionContent").style.display = "block";
+    } else {
+      document.getElementById("error").style.display = "block";
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
