@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -32,12 +31,6 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    iframe {
-      width: 100%;
-      height: 800px;
-      border: none;
-      margin-top: 2rem;
-    }
     .error {
       color: red;
       margin-top: 1rem;
@@ -47,33 +40,26 @@
 </head>
 <body>
   <div class="container" id="loginBox">
-    <h2>請輸入密碼以查看報表</h2>
+    <h2>請輸入密碼以進入社區報表</h2>
     <input type="password" id="password" placeholder="輸入密碼" />
     <button onclick="checkPassword()">確認</button>
     <div class="error" id="error">密碼錯誤，請再試一次。</div>
   </div>
 
-  <div id="notionContent" style="display: none;">
-    <iframe src="https://silken-submarine-d21.notion.site/22078b58599f806ab80ad56ba285f81a" allowfullscreen></iframe>
-  </div>
-
-  
-<script>
-  function decode(str) {
-    return atob(str);
-  }
-
-  function checkPassword() {
-    const entered = document.getElementById("password").value;
-    const correct = decode("MjM3"); // base64 for "237"
-    if (entered === correct) {
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("notionContent").style.display = "block";
-    } else {
-      document.getElementById("error").style.display = "block";
+  <script>
+    function decode(str) {
+      return atob(str);
     }
-  }
-</script>
 
+    function checkPassword() {
+      const entered = document.getElementById("password").value;
+      const correct = decode("MjM3"); 
+      if (entered === correct) {
+        window.location.href = "https://silken-submarine-d21.notion.site/2025-22178b58599f80c383e5fac4ddd59ea5";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+  </script>
 </body>
 </html>
